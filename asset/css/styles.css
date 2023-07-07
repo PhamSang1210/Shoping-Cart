@@ -1,0 +1,165 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 16px;
+    background: #ccc;
+}
+
+/* ? Navbar */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #212529;
+    height: 94px;
+}
+
+.navbar h2 {
+    color: #fff;
+}
+
+.container {
+    color: #fff;
+    width: 1170px;
+    max-width: calc(100% - 48px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2 {
+    font-size: 2.4rem;
+}
+
+.cart {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.bi-cart2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 44px;
+    height: 40px;
+    background: #fff;
+    color: #000;
+}
+
+.cartAmount {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: red;
+    top: -18px;
+    left: 36px;
+}
+
+img {
+    cursor: pointer;
+    width: 100%;
+}
+
+img:hover {
+    transform: scale(1.5);
+    transition: 0.5s;
+}
+
+.thumb {
+    display: flex;
+    overflow: hidden;
+}
+
+.details {
+    overflow: hidden;
+}
+
+/* Shop */
+
+.shop {
+    margin-top: 32px;
+}
+
+.item {
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.change {
+    color: var(--color);
+}
+
+.shoping {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-content: center;
+}
+
+/* ? Reponsive */
+@media (max-width: 1000px) {
+    .shoping {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 500px) {
+    .shoping {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* ! Change Details */
+.details {
+    padding: 10px 12px;
+}
+h3 {
+    font-size: 2.5rem;
+    color: #000;
+    font-weight: 700;
+}
+
+p {
+    color: #000;
+    font-size: 1.7rem;
+    margin: 12px 0 12px;
+    font-weight: 500;
+}
+
+.price-quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2 {
+    color: #000;
+    font-weight: 600;
+}
+
+.quantity {
+    cursor: text;
+}
+
+.buttons {
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
