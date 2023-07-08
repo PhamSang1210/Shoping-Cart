@@ -9,21 +9,21 @@ let shopItemsData = [
         img: "./asset/img/img-1.jpg",
     },
     {
-        id: "dkjaskdaskld",
+        id: "djasdaskdkasdj",
         name: "Office Shirt",
         price: 100,
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
         img: "./asset/img/img-2.jpg",
     },
     {
-        id: "dkjaskdaskld",
+        id: "adjasdiuaisdh",
         name: "T Shirt",
         price: 25,
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
         img: "./asset/img/img-3.jpg",
     },
     {
-        id: "dkjaskdaskld",
+        id: "asidasuhdajsd",
         name: "Mens Suit",
         price: 300,
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
@@ -31,11 +31,14 @@ let shopItemsData = [
     },
 ];
 
-function generateShop() {
+let basket = [];
+
+let generateShop = () => {
     return (shop.innerHTML = shopItemsData
         .map((items) => {
             let { id, name, price, desc, img } = items;
-            return `<div class="item">
+            return `
+    <div id="product-id-${id}" class="item">
         <figure class="thumb">
             <img src="${img}" alt="" />
         </figure>
@@ -45,22 +48,63 @@ function generateShop() {
                 ${desc}
             </p>
             <div class="price-quantity">
-                <h2>$ ${price}</h2>   
+                <h2>$ ${price}</h2>  
+
                 <div class="buttons">
                     <i
+                        onclick="decrement(${id})"
                         style="--color: red"
                         class="bi bi-dash-lg change"
                     ></i>
-                    <div class="quantity">0</div>
+                    <div id=${id} class="quantity">0</div>
                     <i
+                        onclick="increment(${id})"
                         style="--color: green"
                         class="bi bi-plus-lg change"
                     ></i>
                 </div>
+
             </div>
         </div>
     </div>`;
         })
         .join(" "));
-}
+};
 generateShop();
+
+let increment = (id) => {
+    let seclectItem = id; // "sdajaskdjas;ldjas"
+    let search = basket.find((element) => {
+        return element.id === seclectItem.id;
+    });
+    if (search === undefined) {
+        basket.push({
+            id: seclectItem.id,
+            item: 1,
+        });
+    } else {
+        search.item++;
+    }
+    update(seclectItem.id);
+};
+
+let decrement = (id) => {
+    let seclectItem = id;
+    let search = basket.find((element) => {
+        return element.id === seclectItem.id;
+    });
+    if (search.item === 0) {
+        return;
+    } else {
+        search.item--;
+    }
+    update(seclectItem.id);
+};
+
+let update = (id) => {
+    let search = basket.find((x) => {
+        return x.id === id;
+    });
+    document.getElementById(id).textContent = search.item;
+};
+s;
