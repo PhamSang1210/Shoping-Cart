@@ -73,7 +73,7 @@ let generateShop = () => {
 generateShop();
 
 let increment = (id) => {
-    let seclectItem = id; // "sdajaskdjas;ldjas"
+    let seclectItem = id;
     let search = basket.find((element) => {
         return element.id === seclectItem.id;
     });
@@ -106,5 +106,16 @@ let update = (id) => {
         return x.id === id;
     });
     document.getElementById(id).textContent = search.item;
+    caculator();
 };
-s;
+
+let caculator = () => {
+    let cartIcon = document.querySelector(".cartAmount");
+    cartIcon.textContent = basket
+        .map((items) => {
+            return items.item;
+        })
+        .reduce((result, item) => {
+            return result + item;
+        }, 0);
+};
