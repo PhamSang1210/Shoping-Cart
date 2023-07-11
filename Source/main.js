@@ -1,35 +1,6 @@
 let shop = document.querySelector(".shoping");
 
-let shopItemsData = [
-    {
-        id: "dkjaskdaskld",
-        name: "Casual Shirt",
-        price: 45,
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-        img: "./asset/img/img-1.jpg",
-    },
-    {
-        id: "djasdaskdkasdj",
-        name: "Office Shirt",
-        price: 100,
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-        img: "./asset/img/img-2.jpg",
-    },
-    {
-        id: "adjasdiuaisdh",
-        name: "T Shirt",
-        price: 25,
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-        img: "./asset/img/img-3.jpg",
-    },
-    {
-        id: "asidasuhdajsd",
-        name: "Mens Suit",
-        price: 300,
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-        img: "./asset/img/img-4.jpg",
-    },
-];
+//Data items
 
 let basket = JSON.parse(localStorage.getItem("DATA")) || [];
 
@@ -41,7 +12,7 @@ let generateShop = () => {
             return `
     <div id="product-id-${id}" class="item">
         <figure class="thumb">
-            <img src="${img}" alt="" />
+            <img loading="auto" src="${img}" alt="" />
         </figure>
         <div class="details">
             <h3>${name}</h3>
@@ -133,11 +104,8 @@ caculator();
 
 // SessionStorage
 // let input = document.querySelector(".temp");
-
 // input.value = sessionStorage.getItem("draft");
-
 // input.addEventLis    tener("change", asdasidha);
-
 // function asdasidha() {
 //     sessionStorage.setItem("draft", input.value);
 // }
