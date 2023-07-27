@@ -74,15 +74,15 @@ h2 {
     border-radius: 10px;
 }
 
-img {
-    cursor: pointer;
+.thumb__img {
+    cursor: none;
     width: 100%;
 }
 
-img:hover {
+/* img:hover {
     transform: scale(1.5);
     transition: 0.5s;
-}
+} */
 
 .thumb {
     display: flex;
@@ -180,4 +180,19 @@ a {
 
 [data="link"] {
     background: #212529;
+}
+
+.mirror {
+    position: fixed;
+    pointer-events: none;
+    cursor: none;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none;
 }

@@ -1,111 +1,115 @@
 let shop = document.querySelector(".shoping");
 
-//Data items
+let basket = JSON.parse(localStorage.getItem("data")) || [];
 
-let basket = JSON.parse(localStorage.getItem("DATA")) || [];
-
-let generateShop = () => {
-    return (shop.innerHTML = shopItemsData
-        .map((items) => {
-            let { id, name, price, desc, img } = items;
+let gennerShop = () => {
+    return (shop.innerHTML = dataShopItems
+        .map((x) => {
+            let { id, name, img, desc, price } = x;
             let search = basket.find((x) => x.id === id) || [];
             return `
-    <div id="product-id-${id}" class="item">
-        <figure class="thumb">
-            <img loading="auto" src="${img}" alt="" />
-        </figure>
-        <div class="details">
-            <h3>${name}</h3>
-            <p>
-                ${desc}
-            </p>
-            <div class="price-quantity">
-                <h2>$ ${price}</h2>  
-
-                <div class="buttons">
-                    <i
-                        onclick="decrement(${id})"
-                        style="--color: red"
-                        class="bi bi-dash-lg change"
-                    ></i>
-                    <div id=${id} class="quantity">
-                       ${search.item === undefined ? 0 : search.item}
-                    </div>
-                    <i
-                        onclick="increment(${id})"
-                        style="--color: green"
-                        class="bi bi-plus-lg change"
-                    ></i>
+        <div class="item">
+    <figure class="thumb">
+        <img class="thumb__img" loading="auto" src="${img}" alt="" />
+    </figure>
+    <div class="details">
+        <h3>${name}</h3>
+        <p>
+            ${desc}
+        </p>
+        <div class="price-quantity">
+            <h2>$ ${price}</h2>  
+    
+            <div class="buttons">
+                <i
+                    onclick='decrement(${id})'
+                    style="--color: red"
+                    class="bi bi-dash-lg change"
+                ></i>
+                <div id="${id}" class="quantity">
+               ${search.item === undefined ? 0 : search.item}
                 </div>
-
+                <i
+                    onclick='increment(${id})'
+                    style="--color: green"
+                    class="bi bi-plus-lg change"
+                ></i>
             </div>
+           
         </div>
-    </div>`;
+    </div>
+    </div>
+        `;
         })
         .join(" "));
 };
-generateShop();
 
 let increment = (id) => {
-    let seclectItem = id;
-    let search = basket.find((element) => {
-        return element.id === seclectItem.id;
-    });
+    let selectItem = id;
+    let search = basket.find((x) => x.id === selectItem.id);
     if (search === undefined) {
         basket.push({
-            id: seclectItem.id,
+            id: selectItem.id,
             item: 1,
         });
     } else {
         search.item++;
     }
-    localStorage.setItem("DATA", JSON.stringify(basket));
-    update(seclectItem.id);
+    localStorage.setItem("data", JSON.stringify(basket));
+    update(selectItem.id);
 };
-
 let decrement = (id) => {
-    let seclectItem = id;
-    let search = basket.find((element) => {
-        return element.id === seclectItem.id;
-    });
-    //Check click equal 0
+    let selectItem = id;
+    let search = basket.find((x) => x.id === selectItem.id);
     if (search === undefined) return;
-    //End
     if (search.item === 0) {
         return;
     } else {
         search.item--;
     }
-    update(seclectItem.id);
+    update(selectItem.id);
     basket = basket.filter((x) => x.item !== 0);
-    localStorage.setItem("DATA", JSON.stringify(basket));
+    localStorage.setItem("data", JSON.stringify(basket));
 };
 
 let update = (id) => {
-    let search = basket.find((x) => {
-        return x.id === id;
-    });
-    document.getElementById(id).textContent = search.item;
+    let search = basket.find((x) => x.id === id);
+    document.getElementById(id).innerHTML = search.item;
     caculator();
 };
 
 let caculator = () => {
-    let cartIcon = document.querySelector(".cartAmount");
-    cartIcon.textContent = basket
-        .map((items) => {
-            return items.item;
-        })
-        .reduce((result, item) => {
-            return result + item;
-        }, 0);
+    document.querySelector(".cartAmount").innerHTML = basket
+        .map((x) => x.item)
+        .reduce((a, b) => a + b, 0);
 };
 
-caculator();
+let zoomImage = () => {
+    let listImage = document.querySelectorAll("img");
+    let mirror = document.querySelector(".mirror");
+    listImage.forEach((img) => {
+        img.addEventListener("mousemove", function (e) {
+            mirror.classList.remove("hidden");
+            mirror.style.top = `${e.clientY}px`;
+            mirror.style.left = `${e.clientX}px`;
 
-// SessionStorage
-// let input = document.querySelector(".temp");
-// input.value = sessionStorage.getItem("draft");
-// input.addEventLis    tener("change", asdasidha);
-// function asdasidha() {
-//     sessionStorage.setItem("draft", input.value);
-// }
+            let percentX = (e.offsetX / this.offsetWidth) * 100;
+
+            let percentY = (e.offsetY / this.offsetHeight) * 100;
+            let urlImg = e.target.getAttribute("src");
+            mirror.style.backgroundSize = `1000px 1000px`;
+            mirror.style.backgroundImage = `url(${urlImg})`;
+            mirror.style.backgroundPosition = `${percentX}% ${percentY}%`;
+        });
+        img.addEventListener("mouseleave", (e) => {
+            mirror.classList.add("hidden");
+        });
+    });
+};
+
+function run() {
+    gennerShop();
+    caculator();
+    zoomImage();
+}
+run();

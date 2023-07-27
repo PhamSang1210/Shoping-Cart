@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./asset/css/reset.css" />
-        <!-- ? Favicon -->
+        <!-- ! Favicon -->
         <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -105,30 +105,56 @@
                 </a>
             </div>
         </nav>
-
+        <!--Content EMPTY -->
         <div id="label" class="text-center"></div>
+        <!-- !Back To Home -->
         <div class="shoping-cart" id="shoping-cart"></div>
-
-        <img src="" loading="lazy" alt="" />
+        <!-- END -->
         <style>
             .shoping-cart {
+                margin-top: 20px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                row-gap: 20px;
                 align-items: center;
             }
-
-            .text-center {
-                text-align: center;
-                margin-top: 30px;
+            .cart__item-wrap {
+                display: flex;
             }
-            .center__btn {
-                text-align: center;
+            .cart__item-img {
+                display: flex;
+            }
+            .cart-item {
+                display: flex;
+                overflow: hidden;
+                border: 1px solid #000;
+            }
+            .details {
+                display: flex;
+                grid-template-columns: repeat(1, 350px);
+                gap: 20px;
+            }
+            .title-price {
+                display: flex;
+            }
+            .bi-x-lg {
+                display: block;
+            }
+            h4 {
+                display: flex;
+                gap: 20px;
+            }
+            p {
+                display: inline-block;
+            }
+            .dasjdasd {
+                background: green;
             }
         </style>
     </body>
-
+    <!-- File Cart -->
+    <!-- <script src="./Source/main.js"></script> -->
     <script src="./Source/Data_items.js"></script>
+    <!-- <script src="./Source/main.js"></script> -->
     <script src="./Source/cart.js"></script>
 </html>
